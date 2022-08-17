@@ -1,60 +1,65 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <div class="header">
+      <img class="header__logo" src="./assets/logo.svg">
+
+      <div class="header__nav">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#producten">Producten</a></li>
+          <li><a href="#">Winkelwagen</a></li>
+        </ul>
+        <!-- <div>
+          <router-link to="/">Home</router-link> |
+          <router-link to="/products">Products</router-link> |
+          <router-link to="/cart">Cart</router-link>
+        </div> -->
+      </div>
+    </div>
+
+    <Home />
   </div>
 </template>
 
 <script>
+import Home from './views/Home.vue';
+
 export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  }
+  name: 'App',
+  components: { Home },
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @import './styles/Typography';
 
-h1, h2 {
-  font-weight: normal;
-}
+  #app {
+    font-family: 'Barlow', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+    margin: 20px 20px 0 20px;
+  } 
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 0 50px 0;
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
+    &__logo {
+      width: 50px;
+      margin: 0 50px 0 0;
+    }
+  }
 
-a {
-  color: #42b983;
-}
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
 </style>
