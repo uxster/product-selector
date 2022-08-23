@@ -1,9 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/HomePage.vue";
 import Products from "../views/ProductsPage.vue";
-import ProductsFlyers from "../views/ProductsPageFlyers.vue";
-import ProductsBusinessCards from "../views/ProductsPageBusinessCards.vue";
-import ProductsPosters from "../views/ProductsPagePosters.vue";
+import ProductsPageCategory from "../views/ProductsPageCategory.vue";
 import Cart from "../views/CartPage.vue";
 
 const router = createRouter({
@@ -20,19 +18,9 @@ const router = createRouter({
       component: Products,
     },
     {
-      path: "/products/flyers",
-      name: "flyers",
-      component: ProductsFlyers,
-    },
-    {
-      path: "/products/businesscards",
-      name: "businesscards",
-      component: ProductsBusinessCards,
-    },
-    {
-      path: "/products/posters",
-      name: "posters",
-      component: ProductsPosters,
+      path: "/products/:category",
+      name: "product-category",
+      component: ProductsPageCategory,
     },
     {
       path: "/cart",

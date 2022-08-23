@@ -3,8 +3,8 @@
     <ul class="properties-list">
       <li
         class="properties-list__item"
-        v-for="(property, index) in properties"
-        :key="index"
+        v-for="property in properties"
+        :key="property.slug"
       >
         <div class="properties-list__text">
           <h4 class="heading-4">{{ property.title }}</h4>
@@ -13,12 +13,16 @@
         <ul class="properties-list__options">
           <li
             class="properties-list__option"
-            v-for="(option, index) in property.options"
-            :key="`option-${index}`"
+            v-for="option in property.options.filter((o) => o.name)"
+            :key="option.slug"
           >
-            <Checkbox>
+            <RadioBox
+              :value="option.slug"
+              :group-value="selectedProps[property.slug]"
+              @click="selectedProps[property.slug] = option.slug"
+            >
               {{ option.name }}
-            </Checkbox>
+            </RadioBox>
           </li>
         </ul>
       </li>
@@ -27,11 +31,11 @@
 </template>
 
 <script>
-import Checkbox from "./Checkbox.vue";
+import RadioBox from "./RadioBox.vue";
 
 export default {
   name: "PropertiesList",
-  components: { Checkbox },
+  components: { RadioBox },
   props: {
     properties: {
       type: Array,
@@ -40,7 +44,7 @@ export default {
   },
   data() {
     return {
-      listOpen: false,
+      selectedProps: {},
     };
   },
 };

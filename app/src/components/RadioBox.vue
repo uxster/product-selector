@@ -1,13 +1,13 @@
 <template>
-  <label class="checkbox">
-    <input type="checkbox" :checked="checked" @change="handleClick" />
+  <label class="radiobox">
+    <input type="radiobutton" :checked="isChecked" @change="handleClick" />
 
     <span
-      class="checkbox__check"
-      :class="checked ? 'checkbox__check--checked' : ''"
+      class="radiobox__check"
+      :class="isChecked ? 'radiobox__check--checked' : ''"
     ></span>
 
-    <span class="checkbox__label">
+    <span class="radiobox__label">
       <slot />
     </span>
   </label>
@@ -15,22 +15,30 @@
 
 <script>
 export default {
-  name: "CheckBox",
-  data() {
-    return {
-      checked: false,
-    };
+  name: "RadioBox",
+  props: {
+    value: {
+      required: true,
+    },
+    groupValue: {
+      required: true,
+    },
+  },
+  computed: {
+    isChecked() {
+      return this.value === this.groupValue;
+    },
   },
   methods: {
     handleClick() {
-      this.checked = !this.checked;
+      this.$emit("click");
     },
   },
 };
 </script>
 
 <style lang="scss">
-.checkbox {
+.radiobox {
   cursor: pointer;
   display: inline-flex;
   flex-direction: row;
@@ -47,7 +55,7 @@ export default {
   }
 
   &__check {
-    border: 1px solid #eee;
+    border: 1px solid var(--white);
     box-sizing: border-box;
     height: 18px;
     width: 18px;
@@ -59,15 +67,11 @@ export default {
 
     &--checked {
       &::after {
-        border: solid var(--red);
-        border-width: 0 3px 3px 0;
-        width: 4px;
+        background: red;
+        width: 10px;
         height: 10px;
-        left: 50%;
-        top: 50%;
-        transform: rotate(45deg) translate(-50%, -50%);
-        transform-origin: left top;
-        transition: opacity 0.08s;
+        left: 18%;
+        top: 18%;
       }
     }
   }
