@@ -1,65 +1,73 @@
-<template>
-  <div id="app">
-    <div class="header">
-      <img class="header__logo" src="./assets/logo.svg">
-
-      <div class="header__nav">
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#producten">Producten</a></li>
-          <li><a href="#">Winkelwagen</a></li>
-        </ul>
-        <!-- <div>
-          <router-link to="/">Home</router-link> |
-          <router-link to="/products">Products</router-link> |
-          <router-link to="/cart">Cart</router-link>
-        </div> -->
-      </div>
-    </div>
-
-    <Home />
-  </div>
-</template>
-
-<script>
-import Home from './views/Home.vue';
-
-export default {
-  name: 'App',
-  components: { Home },
-}
+<script setup>
+import { RouterLink, RouterView } from "vue-router";
 </script>
 
-<style lang="scss">
-  @import './styles/Typography';
+<template>
+  <header class="header">
+    <img class="header__logo" alt="Print.com logo" src="./assets/logo.svg" />
 
-  #app {
-    font-family: 'Barlow', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #2c3e50;
-    margin: 20px 20px 0 20px;
-  } 
+    <nav class="header__nav">
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/products">Producten</RouterLink>
+      <RouterLink to="/cart">Winkelwagen</RouterLink>
+    </nav>
+  </header>
 
-  .header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 0 0 50px 0;
+  <RouterView />
+</template>
 
-    &__logo {
-      width: 50px;
-      margin: 0 50px 0 0;
+<style lang="scss" global>
+@import "./assets/main.css";
+@import "./assets/styles/typography.scss";
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 0 50px 0;
+
+  &__logo {
+    width: 50px;
+    margin: 0 50px 0 0;
+  }
+
+  &__nav {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 2rem;
+
+    a {
+      display: inline-block;
+      padding: 0 1rem;
+      border-left: 1px solid var(--divider-light);
     }
   }
+}
 
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
+// @media (min-width: 1024px) {
+//   header {
+//     display: flex;
+//     place-items: center;
+//     padding-right: calc(var(--section-gap) / 2);
+//   }
 
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
+//   .logo {
+//     margin: 0 2rem 0 0;
+//   }
+
+//   header .wrapper {
+//     display: flex;
+//     place-items: flex-start;
+//     flex-wrap: wrap;
+//   }
+
+//   nav {
+//     text-align: left;
+//     margin-left: -1rem;
+//     font-size: 1rem;
+
+//     padding: 1rem 0;
+//     margin-top: 1rem;
+//   }
+// }
 </style>

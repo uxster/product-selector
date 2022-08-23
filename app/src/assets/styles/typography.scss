@@ -1,0 +1,77 @@
+// Links
+
+a {
+  text-decoration: none;
+  transition: 0.4s;
+  color: var(--white);
+}
+
+@media (hover: hover) {
+  a:hover {
+    color: var(--red);
+  } 
+}
+
+// Headings
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Barlow Condensed', sans-serif;
+  margin: 0;
+  font-weight: 700;
+}
+
+@mixin heading-modifiers {
+  &--bold {
+      font-weight: 700;
+  }
+
+  &--uppercase {
+      text-transform: uppercase;
+  }
+
+  &--center {
+      text-align: center;
+  }
+}
+
+.heading-1 {
+  @extend h1;
+  @include heading-modifiers;
+}
+
+.heading-2 {
+  @extend h2;
+  @include heading-modifiers;
+}
+
+.heading-3 {
+  @extend h3;
+  @include heading-modifiers;
+}
+
+.heading-4 {
+  @extend h4;
+  @include heading-modifiers;
+}
+
+.heading-5 {
+  @extend h5;
+  @include heading-modifiers;
+}
+
+.heading-6 {
+  @extend h6;
+  @include heading-modifiers;
+}
+
+// lists
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin: 0 10px;
+}

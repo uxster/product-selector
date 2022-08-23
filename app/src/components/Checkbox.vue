@@ -2,7 +2,10 @@
   <label class="checkbox">
     <input type="checkbox" :checked="checked" @change="handleClick" />
 
-    <span class="checkbox__check"></span>
+    <span
+      class="checkbox__check"
+      :class="checked ? 'checkbox__check--checked' : ''"
+    ></span>
 
     <span class="checkbox__label">
       <slot />
@@ -12,68 +15,65 @@
 
 <script>
 export default {
-  name: 'Checkbox',
+  name: "CheckBox",
   data() {
     return {
       checked: false,
-    }
+    };
   },
-   methods: {
+  methods: {
     handleClick() {
-      this.checked = !this.checked
-    }
-  }
-}
+      this.checked = !this.checked;
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-  .checkbox {
-    align-items: center;
+.checkbox {
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  user-select: none;
+
+  input {
     cursor: pointer;
-    display: inline-flex;
-    flex-direction: row;
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+
+  &__check {
+    border: 1px solid #eee;
+    box-sizing: border-box;
+    height: 18px;
+    width: 18px;
     position: relative;
-    user-select: none;
-    vertical-align: top;
-
-    input {
-      cursor: pointer;
-      height: 0;
-      opacity: 0;
+    &::after {
+      content: "";
       position: absolute;
-      width: 0;
-
-      &:checked ~ .vue-chk__check::after {
-        opacity: 1;
-      }
     }
 
-    &__check {
-      border: 1px solid var(--border-color);
-      box-sizing: border-box;
-      height: var(--chk-size);
-      order: 1;
-      position: relative;
-      width: var(--chk-size);
+    &--checked {
       &::after {
-        border: solid var(--input-checked-color);
+        border: solid var(--red);
         border-width: 0 3px 3px 0;
-        content: '';
+        width: 4px;
         height: 10px;
         left: 50%;
-        opacity: 0;
-        position: absolute;
         top: 50%;
         transform: rotate(45deg) translate(-50%, -50%);
         transform-origin: left top;
         transition: opacity 0.08s;
-        width: 4px;
       }
     }
-
-    &__label {
-      margin-left: 5px;
-      order: 2;
-    }
   }
+
+  &__label {
+    margin-left: 5px;
+  }
+}
 </style>

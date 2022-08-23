@@ -1,37 +1,29 @@
 <template>
   <div class="product-header">
-    <img class="product-header__logo" :src="iconUrl">
-    <h4 class="heading-4">{{ title }}</h4>
+    <h2 class="heading-2 heading-4--bold">{{ title }} - Productopties</h2>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ProductHeader',
+  name: "ProductHeader",
   props: {
     title: {
       type: String,
-      required: true
+      required: true,
     },
-    iconUrl: {
-      type: String,
-      required: true
-    },
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss">
-  .product-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background:#ff0048;
-    color: #fff;
-    padding: 10px;
-
-    &__logo {
-
-    }
-  }
+.product-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: var(--red);
+  color: var(--white);
+  padding: 10px;
+  margin: 20px 0;
+}
 </style>
